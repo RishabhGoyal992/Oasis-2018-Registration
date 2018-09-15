@@ -10,6 +10,7 @@ body{
   src: url('fonts/BebasNeue-Regular.ttf');
   
 }
+
 .close {
   position: absolute;
   left: 3%;
@@ -318,17 +319,24 @@ select{
 #events{
   display: none;
 }
-
+  @media screen and (max-width : 992px)
+      {
+        .mob{display:block !important;}
+      }
 @media screen and (max-width : 992px)
 {
-  
+   .mob{
+    display: inline;
+  }
   .events-box{
     width: 100%;
   }
   select{
     width: 100%;
   }
- 
+  #select_info{
+    display: none;
+  }
  
 }
 
@@ -339,6 +347,9 @@ input[type="radio"]{
 }
 
 @media only screen and (max-width: 768px){
+   #select_info_mobile{
+    display: inline;
+  } 
   .field{
     margin-bottom: 0;
   }
