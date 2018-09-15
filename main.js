@@ -1,6 +1,7 @@
 $(document).ready(function(){
    $("#back-btn").css('display', "none");
    $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
+    $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
  })
 
 $(document).ready(function() {
