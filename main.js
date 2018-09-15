@@ -1,92 +1,151 @@
-URL= "http://172.17.42.109:8000/registrations/";
+URL = "http://192.168.43.36:8000/registrations/";
+$(document).ready(function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', URL, true);
+  xhr.send();
 
-var xhr = new XMLHttpRequest();
-xhr.open('GET', URL , true);
-xhr.send();
- 
-xhr.onreadystatechange = processRequest;
- 
-function processRequest(e) {
- 
-  if (xhr.readyState == 4 && xhr.status == 200) {
-    var response = JSON.parse(xhr.responseText);
-        alert(response.colleges[0]);
-        alert(response.events[0]);
-}
-}
+  xhr.onreadystatechange = processRequest;
 
-window.onload = function(f){
-var xhr = new XMLHttpRequest();
-  xhr.open("POST", URL, true);
+  function processRequest(e) {
 
-  xhr.setRequestHeader("Content-Type", "application/json");
-  
-  xhr.onreadystatechange = function() {
-      if(this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        // console.log(this.responseText);
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var response = JSON.parse(xhr.responseText);
+      alert(response.colleges[0]);
+      alert(response.events[0]);
+      var clgs = response.colleges,
+        events = response.events;
+      var collegeOption = "";
+
+      for (var i = 0; i < clgs.length; i++) {
+        console.log(clgs[i]);
+        collegeOption += "<option>" + clgs[i] + " </option>";
       }
+      console.log(collegeOption);
+      collegeElem = document.getElementById('college');
+      collegeElem.innerHTML += collegeOption;
   }
-  myObj = { "events":"sadf", "email":"rishabbarora1780@gmail.com", "name":"rishabh", "gender":"male", "city":"noida", "phone":9911074100, "head_of_society":true, "year_of_study":2 };
-x=JSON.stringify({ events:["Best Event Ever","fghjk"], email:"rishabbarora1780@gmail.com", name:"rishabh", college:"BITS" , gender:"male", city:"noida", phone:9911074100, head_of_society:true, year_of_study:2 });
-// x=JSON.stringify(myObj);  
-xhr.send(x);
-}
-
-//new
-
-
-$(document).ready(function(){
-   $("#back-btn").css('display', "none");
-   $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
-    $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
- })
-
-function checkEmail() {
-
-    var email = document.getElementById('txtEmail');
-    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-    if (!filter.test(email.value)) {
-      'txtEmail'.textContent = 'Please provide a valid email address';
-      alert('Please provide a valid email address');
-      email.focus;
-    return false;
- }
-}
-function phonenumber()
-{
-  var phoneno = /^\d{10}$/;
-  var mobn = document.getElementById('mob-number');
-  if(!phoneno.test(mobn.value))
-  {
-    
-     alert("Provide a valid Mobile Number");
-     return false;
-      
-  }
-  else
-  {
-    return true;
-  }
-  }
-
-  function myFunction(){
-    checkEmail();
-    phonenumber();
-}
-
-
-$(document).ready(function() {
-  $('#event-select').select2({
-    'placeholder': 'Search event name',
-    width: "resolve",
-  });
-   $('#college').select2({
-   
-    width: "resolve",
-  });
 });
 
 
 
-console.clear();
+
+document.getElementById('submit-button').addEventListener('click', function () {
+  var name = document.getElementById('name').value;
+  var city = document.getElementById('city').value;
+  var phone = document.getElementById('phoneNumber').value;
+  var email = document.getElementById('email').value;
+  var head_of_society;
+  var year_of_study;
+  var gender;
+  function gender() {
+    if (document.getElementById('male').checked == true)
+      gender = "male";
+    else if (document.getElementById('female').checked == true)
+      gender = "female";
+    else
+      gender = "others";
+  }
+  gender();
+  function head() {
+    if (document.getElementById('yes').checked == true)
+      head_of_society = true;
+    else
+      head_of_society = false;
+  }
+  head();
+  function year() {
+    if (document.getElementById('one').checked == true)
+      year_of_study = 1;
+    else if (document.getElementById('two').checked == true)
+      year_of_study = 2;
+    else if (document.getElementById('three').checked == true)
+      year_of_study = 3;
+    else if (document.getElementById('four').checked == true)
+      year_of_study = 5;
+    else if (document.getElementById('five').checked == true)
+      year_of_study = 5;
+  }
+  year();
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", URL, true);
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function () {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      // console.log(this.responseText);
+    }
+  }
+  // myObj = { "events":"sadf", "email":"rishabbarora1780@gmail.com", "name":"rishabh", "gender":"male", "city":"noida", "phone":9911074100, "head_of_society":true, "year_of_study":2 };
+  x = JSON.stringify({
+    events: ["Best Event Ever"],
+    email: email,
+    name: name,
+    college: "BITS",
+    gender: gender,
+    city: city,
+    phone: phone,
+    head_of_society: head_of_society,
+    year_of_study: year_of_study
+  });
+  console.log(x);
+  xhr.send(x);
+});
+
+
+//new
+
+
+$(document).ready(function () {
+  $("#back-btn").css('display', "none");
+  $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
+  $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
+})
+
+function checkEmail() {
+
+  var email = document.getElementById('txtEmail');
+  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+  if (!filter.test(email.value)) {
+    'txtEmail'.textContent = 'Please provide a valid email address';
+    alert('Please provide a valid email address');
+    email.focus;
+    return false;
+  }
+}
+function phonenumber() {
+  var phoneno = /^\d{10}$/;
+  var mobn = document.getElementById('mob-number');
+  if (!phoneno.test(mobn.value)) {
+
+    alert("Provide a valid Mobile Number");
+    return false;
+
+  }
+  else {
+    return true;
+  }
+}
+
+function myFunction() {
+  checkEmail();
+  phonenumber();
+}
+
+
+// $(document).ready(function() {
+//   $('#event-select').select2({
+//     'placeholder': 'Search event name',
+//     width: "resolve",
+//   });
+//    $('#college').select2({
+
+//     width: "resolve",
+//   });
+// });
+
+
+
+// console.clear();

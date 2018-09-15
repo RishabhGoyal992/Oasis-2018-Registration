@@ -7,7 +7,6 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> 
 	
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
- 	<script type="text/javascript" src="main.js"></script>
 	
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> 
   <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
@@ -24,13 +23,13 @@
 		</nav>
 		<h1 id="reg" style=" font-family: 'BebasNeue-Regular'; color: rgba(255, 255, 255, 1);  letter-spacing: 10px; font-weight: normal; font-size: 300%; padding-bottom: 2%;">REGISTER</h1>
 		<p></p>
-    <form class="form"  id="register-form" acion="/2017/register/" method = "POST" style="opacity: 1; color: rgba(255, 255, 255, 1)">
+    <form class="form"  id="register-form" style="opacity: 1; color: rgba(255, 255, 255, 1)">
 			
   		<div class="field">
     		<label>1. What is your Name: </label>
     		<p></p>
         <div class="input">
-    			<input type="text" name="name" tabindex="1" />
+    			<input type="text" name="name" id="name" tabindex="1" />
   			</div>
   		</div>
   		<div class="field">
@@ -45,7 +44,7 @@
   		<div class="field">
     		<label>3. Which city do you reside in?</label>
     		<div class="input">
-    			<input type="text" name="city" tabindex="4"/>
+    			<input type="text" name="city" id='city' tabindex="4"/>
     		</div>
   		</div>
 
@@ -53,25 +52,25 @@
     		<label>4. Where can we contact you?</label>
         <p style="display:inline">+91-</p>
     		<div class="input">
-    		<input type="text" type="number" name="phone" max="9999999999" min="100000000" tabindex="5"/>
+    		<input type="text" type="number" name="phone" id='phoneNumber' max="9999999999" min="100000000" tabindex="5"/>
     		</div>
   		</div>
 
   		<div class="field">
     		<label>5. What is your Email ID? </label>
     		<div class="input" >
-    			<input type="text" name="email" tabindex="6"/>
+    			<input type="text" name="email" id='email' tabindex="6"/>
   			</div>	
   		</div>
   		<div class="field">
     		<label>6. What is the name of your college? </label>
         <p></p>
     		<div class="input">
-    			<select name="college" id="college" tabindex="7" >
+    			<select name="college" id="college" >
 
     				<!-- just for UI testing, the list to be 'get' from back -->
 
-						 <option value="" disabled selected>Search college name</option>
+						 <option selected value="" hidden>COLLEGE NAME</option>
 						<option value="college8">college1</option>
 						<option value="college2">college2</option>
 						<option value="college3">college3</option>
@@ -161,7 +160,7 @@
 <a href="#" class="close">
 
 </div>
-
+<script type="text/javascript" src="main.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 </body>
