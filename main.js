@@ -31,3 +31,62 @@ x=JSON.stringify({ events:["Best Event Ever","fghjk"], email:"rishabbarora1780@g
 // x=JSON.stringify(myObj);  
 xhr.send(x);
 }
+
+//new
+
+
+$(document).ready(function(){
+   $("#back-btn").css('display', "none");
+   $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
+    $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
+ })
+
+function checkEmail() {
+
+    var email = document.getElementById('txtEmail');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if (!filter.test(email.value)) {
+      'txtEmail'.textContent = 'Please provide a valid email address';
+      alert('Please provide a valid email address');
+      email.focus;
+    return false;
+ }
+}
+function phonenumber()
+{
+  var phoneno = /^\d{10}$/;
+  var mobn = document.getElementById('mob-number');
+  if(!phoneno.test(mobn.value))
+  {
+    
+     alert("Provide a valid Mobile Number");
+     return false;
+      
+  }
+  else
+  {
+    return true;
+  }
+  }
+
+  function myFunction(){
+    checkEmail();
+    phonenumber();
+}
+
+
+$(document).ready(function() {
+  $('#event-select').select2({
+    'placeholder': 'Search event name',
+    width: "resolve",
+  });
+   $('#college').select2({
+   
+    width: "resolve",
+  });
+});
+
+
+
+console.clear();
