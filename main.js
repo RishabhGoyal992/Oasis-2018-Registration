@@ -1,4 +1,4 @@
-URL = "http://192.168.43.36:8000/registrations/";
+URL = "http://192.168.43.36:8000/2018/registrations/";
 $(document).ready(function () {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', URL, true);
@@ -10,22 +10,42 @@ $(document).ready(function () {
 
     if (xhr.readyState == 4 && xhr.status == 200) {
       var response = JSON.parse(xhr.responseText);
-      alert(response.colleges[0]);
-      alert(response.events[0]);
       var clgs = response.colleges,
         events = response.events;
       var collegeOption = "";
+      var eventsOption = "";
 
       for (var i = 0; i < clgs.length; i++) {
-        console.log(clgs[i]);
+        // console.log(clgs[i]);
         collegeOption += "<option>" + clgs[i] + " </option>";
       }
-      console.log(collegeOption);
+
+      for (var i = 0; i < events.length; i++) {
+        // console.log(clgs[i]);
+        eventsOption += "<option>" + events[i] + " </option>";
+      }
+
+      // console.log(collegeOption);
       collegeElem = document.getElementById('college');
       collegeElem.innerHTML += collegeOption;
+      // document.getElementById('college').append(collegeOption);
+      eventsElem = document.getElementById('event-select');
+      eventsElem.innerHTML += eventsOption;
+
+    }
   }
 });
 
+document.getElementById('event-select').addEventListener('click', function(){
+  eventsBox = document.getElementById('events');
+  eventName = document.getElementById('event-select').value;
+  console.log(eventName);
+  var newEvent = ""; 
+  newEvent = "<span>" + eventName + "</span>"
+  eventsBox.innerHTML += newEvent;
+  eventName = "";
+});
+  
 
 
 
@@ -34,6 +54,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
   var city = document.getElementById('city').value;
   var phone = document.getElementById('phoneNumber').value;
   var email = document.getElementById('email').value;
+  var college = document.getElementById('college').value;
   var head_of_society;
   var year_of_study;
   var gender;
@@ -66,7 +87,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
       year_of_study = 5;
   }
   year();
-
+  
   var xhr = new XMLHttpRequest();
   xhr.open("POST", URL, true);
 
@@ -77,19 +98,18 @@ document.getElementById('submit-button').addEventListener('click', function () {
       // console.log(this.responseText);
     }
   }
-  // myObj = { "events":"sadf", "email":"rishabbarora1780@gmail.com", "name":"rishabh", "gender":"male", "city":"noida", "phone":9911074100, "head_of_society":true, "year_of_study":2 };
   x = JSON.stringify({
     events: ["Best Event Ever"],
     email: email,
     name: name,
-    college: "BITS",
+    college: college,
     gender: gender,
     city: city,
     phone: phone,
     head_of_society: head_of_society,
     year_of_study: year_of_study
   });
-  console.log(x);
+  // console.log(x);
   xhr.send(x);
 });
 
@@ -97,11 +117,11 @@ document.getElementById('submit-button').addEventListener('click', function () {
 //new
 
 
-$(document).ready(function () {
-  $("#back-btn").css('display', "none");
-  $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
-  $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
-})
+// $(document).ready(function () {
+//   $("#back-btn").css('display', "none");
+//   $('#select_info').text('(For Multiple Selection of Events Press Ctrl+)');
+//   $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
+// })
 
 function checkEmail() {
 
