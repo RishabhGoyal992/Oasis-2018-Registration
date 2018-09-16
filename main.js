@@ -45,6 +45,7 @@ $(document).ready(function() {
 
     width: "resolve",
   });
+  console.log($("#first").select2('val'));
 });
 
 URL = "https://bits-oasis.org/2018/registrations/";
