@@ -4,6 +4,32 @@ $(document).ready(function () {
   $('#select_info_mobile').text('(For Multiple Selection of Events Press +)');
 })
 
+$("#submit-button").on("click",function(){
+
+  $("#prereg-msg-overlay").css("display","flex")
+  // $(".dimmer").css('display','flex');
+  // $(".dimmer").css('opacity','0.8');
+  // $(".wrapper").css('opacity','0.8');
+  document.getElementsByClassName("wrapper")[0].style.WebkitFilter = 'blur(4px)';
+document.getElementsByClassName("wrapper")[0].style.filter= 'blur(4px)';
+  $('body').addClass('stop-scrolling')
+  $('body').bind('touchmove', function(e){e.preventDefault()})
+});
+
+
+
+$("#close-prereg-msg").on("click",function(){
+
+  $("#prereg-msg-overlay").css("display","none")
+  // $(".dimmer").css('display','none');
+  $(".wrapper").css('opacity','1')
+  $('body').unbind('touchmove')
+  $('body').removeClass('stop-scrolling');
+  document.getElementsByClassName("wrapper")[0].style.WebkitFilter = 'blur(0px)';
+document.getElementsByClassName("wrapper")[0].style.filter= 'blur(0px)';
+
+});
+
 function checkEmail() {
 
   var email = document.getElementById('txtEmail');
