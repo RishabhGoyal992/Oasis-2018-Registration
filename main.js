@@ -16,6 +16,13 @@ function checkEmail() {
     return false;
   }
 }
+function checkEvents() {
+  var eventsSelected = $("#event-select").val();
+  if(eventsSelected.length==0) {
+    alert('Please select an event');
+    return false;
+  }
+}
 function phonenumber() {
   var phoneno = /^\d{10}$/;
   var mobn = document.getElementById('mob-number');
@@ -33,6 +40,7 @@ function phonenumber() {
 function myFunction() {
   checkEmail();
   phonenumber();
+  checkEvents();
 }
 
 
@@ -69,7 +77,7 @@ $(document).ready(function () {
       }
 
       for (var i = 0; i < events.length; i++) {
-        eventsOption += "<option>" + events[i] + " </option>";
+        eventsOption += "<option id='"+events[i].id+"'>" + events[i].name + " </option>";
         console.log(events[i]);
       }
 
@@ -88,7 +96,7 @@ $(document).ready(function () {
 
 
 document.getElementById('submit-button').addEventListener('click', function () {
-  var eventsSelected = $("#event-select").select2('val');
+  var eventsSelected = $("#event-select").val();
   console.log(eventsSelected);
   var name = document.getElementById('name').value;
   var city = document.getElementById('city').value;
@@ -144,7 +152,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
     }
   }
   x = JSON.stringify({
-    events: ["test2"],
+    events: eventsSelected,
     email: email,
     name: name,
     college: college,
