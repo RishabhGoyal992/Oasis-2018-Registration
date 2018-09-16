@@ -11,6 +11,69 @@ body{
   
 }
 
+.error{
+  font-family: 'Montserrat', sans-serif;
+}
+
+#close-prereg-msg{
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  display: flex;
+  width: 5%;
+  height: 5%;
+  background-color: white;
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+.dimmer{
+  display: flex !important;
+  background-color: grey !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+ 
+
+}
+
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+#prereg-msg-overlay{
+  position: fixed;
+  top: 30%;
+  left: 25%;
+  display: flex;
+  width: 40%;
+    height: 40%;
+  padding: 2% 2%;
+  background-color: white;
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+
+}
+#prereg-msg{
+  position: relative;
+  color: black;
+  top: 50%;
+transform: translateY(-50%); 
+
+}
+@media screen and (max-width : 550px)
+{
+  #prereg-msg-overlay{
+    display: none;
+  }
+}
+
 .close {
   position: absolute;
   left: 3%;
@@ -20,7 +83,7 @@ body{
 
   width: 32px;
   height: 32px;
-  opacity: 1;
+  opacity: 1; 
 }
 .close:hover {
   opacity: 0.3;
@@ -324,6 +387,9 @@ select{
       {
         .mob{display:block !important;}
       }
+
+     
+
 @media screen and (max-width : 992px)
 {
    .mob{
