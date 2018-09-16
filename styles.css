@@ -66,6 +66,7 @@ body{
   overflow-y: auto;
   padding-top: 10%;
   color: rgba(255, 255, 255, 1);
+  overflow-x: hidden;
 }
 
 #reg{
