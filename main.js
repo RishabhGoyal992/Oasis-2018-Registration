@@ -45,7 +45,6 @@ $(document).ready(function() {
 
     width: "resolve",
   });
-  console.log($("#event-select").select2('val'));
 });
 
 URL = "https://bits-oasis.org/2018/registrations/";
@@ -89,6 +88,8 @@ $(document).ready(function () {
 
 
 document.getElementById('submit-button').addEventListener('click', function () {
+  var eventsSelected = $("#event-select").select2('val');
+  console.log(eventsSelected);
   var name = document.getElementById('name').value;
   var city = document.getElementById('city').value;
   var phone = document.getElementById('phoneNumber').value;
