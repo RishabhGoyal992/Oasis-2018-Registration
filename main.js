@@ -84,16 +84,6 @@ $(document).ready(function () {
   }
 });
 
-document.getElementById('event-select').addEventListener('click', function(){
-  eventsBox = document.getElementById('events');
-  eventName = document.getElementById('event-select').value;
-  console.log(eventName);
-  var newEvent = ""; 
-  newEvent = "<span>" + eventName + "</span>"
-  eventsBox.innerHTML += newEvent;
-  eventName = "";
-});
-  
 
 
 
@@ -103,6 +93,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
   var phone = document.getElementById('phoneNumber').value;
   var email = document.getElementById('email').value;
   var college = document.getElementById('college').value;
+  var events = document.getElementById('event-select').value;
   var head_of_society;
   var year_of_study;
   var gender;
@@ -136,7 +127,7 @@ document.getElementById('submit-button').addEventListener('click', function () {
       year_of_study = 5;
   }
   year();
-  
+
   var xhr = new XMLHttpRequest();
   xhr.open("POST", URL, true);
 
